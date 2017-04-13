@@ -47,7 +47,7 @@ class BoxTemplate
      * @param \Wbengine\Box $box
      * @internal param $
      */
-    public function __construct(Box $box = null)
+    public function __construct(Box $box)
     {
         $this->site = $box->getSite();
         $this->_box = $box;

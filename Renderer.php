@@ -38,7 +38,7 @@ class Renderer extends Renderer\Adapter
      * Given CMS class object
      * @var object
      */
-    private $_parent = NULL;
+    private $_app = NULL;
 
 
     /**
@@ -87,9 +87,9 @@ class Renderer extends Renderer\Adapter
     function __construct(Application $App)
     {
         if ($App instanceof Application) {
-            $this->_parent = $App;
-//            $this->_site = $App->getSite();
-//            $this->_templatePath = $App->getTemplatesDir();
+            $this->_app = $App;
+            $this->_site = $App->getSite();
+            $this->_templatePath = $App->getTemplatesDir();
         } else {
             throw new Exception\RuntimeException('Require instance of Wbengine\Application, but NULL given.');
         }
@@ -109,7 +109,7 @@ class Renderer extends Renderer\Adapter
      */
     public function getParent()
     {
-        return $this->_parent;
+        return $this->_app;
     }
 
 
@@ -119,7 +119,7 @@ class Renderer extends Renderer\Adapter
      */
     public function getSite()
     {
-        return $this->getParent()->getSite();
+        return $this->_site;
     }
 
 
@@ -139,7 +139,7 @@ class Renderer extends Renderer\Adapter
      */
     public function getTemplatesPath()
     {
-        return $this->getParent()->getTemplatesDir();
+    return $this->_templatePath;
 //        if($this->_app->getTemplateDir() === null) {
 //            $this->_templatePath = APP_DIR . '/Src/View/Front/';
 ////            var_dump(APP_DIR . '/Src/View/Front/');
